@@ -1,3 +1,5 @@
+import Card from "./Card";
+
 export default function RenderCards({data, title}) {
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post}/>);

@@ -35,12 +35,33 @@ export default function CreatePost() {
         setGeneratingImg(false);
       }
     } else {
-      alert('Please enter a prompt')
+      alert("Please enter a prompt");
     }
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+
+    if (form.prompt && form.photo) {
+      setLoading(true);
+      try {
+        const response = await fetch("http://localhost:8080/api/v1/post", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
+        await response.json();
+        navigate("/");
+      } catch (err) {
+        alert(err);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      alert('Please enter a prompt and generate an image');
+    }
   }
 
   function handleChange(e) {
@@ -121,7 +142,11 @@ export default function CreatePost() {
             onClick={generateImage}
             className="text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center cursor-pointer"
           >
-            {generatingImg ? "Generating..." : form.photo ? 'Regenerate' : 'Generate'}
+            {generatingImg
+              ? "Generating..."
+              : form.photo
+              ? "Regenerate"
+              : "Generate"}
           </button>
         </div>
         <div className="mt-10">
