@@ -60,7 +60,7 @@ export default function CreatePost() {
         setLoading(false);
       }
     } else {
-      alert('Please enter a prompt and generate an image');
+      alert("Please enter a prompt and generate an image");
     }
   }
 
@@ -86,8 +86,8 @@ export default function CreatePost() {
   return (
     <section className="max-w-7xl mx-auto">
       <div>
-        <h1 className="font-extrabold text-[#222328] text-[32px]">Create</h1>
-        <p className="mt-2 text-[#666e75] text-[16px] max-w[500px]">
+        <h1 className="font-extrabold text-[#222328] text-[32px] dark:text-[#FFFFFF]">Create</h1>
+        <p className="mt-2 text-[#666e75] text-[16px] max-w[500px] dark:text-[#B3B3B3]">
           Create imaginative and visually stunning images using DALL-E AI and
           share them with the community
         </p>
@@ -114,7 +114,7 @@ export default function CreatePost() {
             handleSurpriseMe={handleSurpriseMe}
           />
 
-          <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
+          <div className="relative bg-gray-50 dark:bg-[#1E1E1E] border border-gray-300 dark:border-[#2E2E2E] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
             {form.photo ? (
               <img
                 src={form.photo}
@@ -156,7 +156,7 @@ export default function CreatePost() {
           </p>
           <button
             type="submit"
-            className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center cursor-pointer"
+            className="mt-3 text-white bg-[#FF2F61] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center cursor-pointer"
           >
             {loading ? "Sharing..." : "Share with the community"}
           </button>
