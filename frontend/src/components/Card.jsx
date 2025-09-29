@@ -12,6 +12,8 @@ export default function Card({ _id, name, prompt, photo }) {
     relative
     shadow-[0_0_1px_0_rgba(189,192,207,0.06),_0_10px_16px_-1px_rgba(189,192,207,0.2)]
     hover:shadow-[0_0_1px_0_rgba(189,192,207,0.06),_0_10px_16px_-1px_rgba(189,192,207,0.4)]
+    dark:shadow-[0_0_1px_0_rgba(0,0,0,0.5),_0_10px_16px_-1px_rgba(0,0,0,0.7)]
+    dark:hover:shadow-[0_0_1px_0_rgba(0,0,0,0.6),_0_10px_16px_-1px_rgba(0,0,0,0.9)]
     card
   "
     >

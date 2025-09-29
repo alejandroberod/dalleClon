@@ -15,7 +15,7 @@ export default function FormField({
       <div className="flex items-center gap-2 mb-2">
         <label
           htmlFor={name}
-          className="block text-sm font-medium text-gray-900"
+          className="block text-sm font-medium text-gray-900 dark:text-[#CCCCCC]"
         >
           {labelName}
         </label>
@@ -37,7 +37,7 @@ export default function FormField({
         value={value}
         onChange={handleChange}
         required
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#4649ff] focus:border-[#4649ff] outline-none block w-full p-3"
+        className="bg-gray-50 dark:bg-[#1E1E1E] dark:border-[#2E2E2E] border border-gray-300 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-[#E02070] focus:border-[#E02070] outline-none block w-full p-3 dark:placeholder-[#B3B3B3]"
         autoComplete="off"
       />
     </div>

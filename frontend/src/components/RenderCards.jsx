@@ -6,7 +6,7 @@ export default function RenderCards({data, title}) {
   }
 
   return (
-    <h2 className='mt-5 font-bold text-[#6449ff] text-xl uppercase'>
+    <h2 className='mt-5 font-bold text-[#FF2F61] text-xl uppercase'>
       {title}
     </h2>
   )
