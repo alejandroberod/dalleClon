@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { preview } from "../assets";
+import { preview, previewDark, previewLight } from "../assets";
 import { getRandomPrompt } from "../utils";
 import { FormField, Loader } from "../components";
+import { ThemeContext } from "../store/ThemeContext";
 
 export default function CreatePost() {
+  const {theme} = useContext(ThemeContext);
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
@@ -123,7 +125,7 @@ export default function CreatePost() {
               />
             ) : (
               <img
-                src={preview}
+                src={theme === 'light' ? previewLight : previewDark}
                 alt="preview"
                 className="w-9/12 h-9/12 object-contain opacity-40"
               />
@@ -140,7 +142,7 @@ export default function CreatePost() {
           <button
             type="button"
             onClick={generateImage}
-            className="text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center cursor-pointer"
+            className="text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center cursor-pointer dark:bg-transparent dark:border-2 dark:border-green-700 dark:hover:bg-green-700"
           >
             {generatingImg
               ? "Generating..."
@@ -156,7 +158,7 @@ export default function CreatePost() {
           </p>
           <button
             type="submit"
-            className="mt-3 text-white bg-[#FF2F61] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center cursor-pointer"
+            className="mt-3 text-white bg-[#FF2F61] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center cursor-pointer dark:bg-transparent dark:border-[#FF2F61] dark:border-2 dark:hover:bg-[#FF2F61]"
           >
             {loading ? "Sharing..." : "Share with the community"}
           </button>
