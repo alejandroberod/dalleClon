@@ -21,7 +21,8 @@ router.route("/").get(async (req, res) => {
 
     res.status(200).json({ success: true, data: posts });
   } catch (error) {
-    res.status(500).json({ success: false, message: error });
+    console.error('Fetching posts failed:', error);
+    res.status(500).json({ success: false, message: error?.message ?? 'Could not fetch posts' });
   }
 });
 
@@ -39,7 +40,8 @@ router.route("/").post(async (req, res) => {
 
     res.status(201).json({ success: true, data: newPost });
   } catch (error) {
-    res.status(500).json({ success: false, message: error });
+    console.error('Creating post failed:', error);
+    res.status(500).json({ success: false, message: error?.message ?? 'Could not create post' });
   }
 });
 

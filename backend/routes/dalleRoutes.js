@@ -28,8 +28,15 @@ router.route("/").post(async (req, res) => {
     const image = response.data[0].b64_json;
     res.status(200).json({ photo: image });
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error?.response.data.error.message);
+    console.error('DALL-E request failed:', error);
+
+    const message =
+      error?.error?.message ??
+      error?.response?.data?.error?.message ??
+      error?.message ??
+      'Something went wrong generating the image';
+
+    res.status(error?.status ?? 500).json({ success: false, message });
   }
 });
 
