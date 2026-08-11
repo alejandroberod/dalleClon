@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Loader, Card, FormField } from "../components";
 import RenderCards from "../components/RenderCards";
+import { API_URL } from "../constants/api";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -14,7 +15,7 @@ export default function Home() {
     async function getPosts() {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:8080/api/v1/post");
+        const response = await fetch(`${API_URL}/post`);
         if (response.ok) {
           const result = await response.json();
           setAllPosts(result.data.reverse());

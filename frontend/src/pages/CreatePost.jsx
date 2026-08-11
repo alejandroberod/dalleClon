@@ -5,6 +5,7 @@ import { preview, previewDark, previewLight } from "../assets";
 import { getRandomPrompt } from "../utils";
 import { FormField, Loader } from "../components";
 import { ThemeContext } from "../store/ThemeContext";
+import { API_URL } from "../constants/api";
 
 export default function CreatePost() {
   const {theme} = useContext(ThemeContext);
@@ -21,7 +22,7 @@ export default function CreatePost() {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
-        const response = await fetch("http://localhost:8080/api/v1/dalle", {
+        const response = await fetch(`${API_URL}/dalle`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -29,6 +30,8 @@ export default function CreatePost() {
           body: JSON.stringify({ prompt: form.prompt }),
         });
         const data = await response.json();
+
+        if (!response.ok) throw new Error(data.message ?? "Could not generate the image");
 
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
       } catch (error) {
@@ -47,14 +50,17 @@ export default function CreatePost() {
     if (form.prompt && form.photo) {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:8080/api/v1/post", {
+        const response = await fetch(`${API_URL}/post`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(form),
         });
-        await response.json();
+        const data = await response.json();
+
+        if (!response.ok) throw new Error(data.message ?? "Could not share the post");
+
         navigate("/");
       } catch (err) {
         alert(err);
