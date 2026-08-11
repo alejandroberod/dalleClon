@@ -22,7 +22,7 @@ router.route("/").post(async (req, res) => {
       prompt,
       n: 1,
       size: "1024x1024",
-      response_format: "b64_json",
+      model: "gpt-image-1",
     });
 
     const image = response.data[0].b64_json;
